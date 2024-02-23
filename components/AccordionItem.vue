@@ -1,12 +1,13 @@
 <template>
     <article>
-        <div @click="showAnswer" class="question">
+        <div @click="showAnswer" class="question" tabindex="0" @keyup.enter="showAnswer" role="button"
+            :aria-expanded="isSelected.toString()" :aria-controls="'accordion-content-' + accordionItem.id">
             <h2>{{ accordionItem.question }}</h2>
-            <img src="../assets/images/icons/icon-plus.svg" v-if="!isSelected" />
-            <img src="../assets/images/icons/icon-minus.svg" v-else />
+            <img src="../assets/images/icons/icon-plus.svg" v-if="!isSelected" alt="Plus icon" />
+            <img src="../assets/images/icons/icon-minus.svg" alt="Minus icon" v-else />
         </div>
         <Transition name="showAnswer">
-            <p v-if="isSelected" class="answer">{{ accordionItem.answer }}</p>
+            <p v-if="isSelected" class="answer" :id="'accordion-content-' + accordionItem.id">{{ accordionItem.answer }}</p>
         </Transition>
     </article>
     <hr>
@@ -32,6 +33,7 @@ article {
     flex-direction: column;
     gap: 24px;
 
+
     .question {
         display: flex;
         justify-content: space-between;
@@ -41,9 +43,10 @@ article {
 
         &:hover {
             h2 {
-                color: #AD28EB;
+                color: $pink;
             }
         }
+
 
         h2 {
             font-size: 18px;
@@ -64,11 +67,17 @@ hr {
     }
 }
 
+.question:focus{
+    outline: 2px solid $pink;
+
+}
+
 
 @media screen and (max-width: $sm-breakpoint) {
 
     article {
         gap: 20px;
+
         .question {
             gap: 24px;
 

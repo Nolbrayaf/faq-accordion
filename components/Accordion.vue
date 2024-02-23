@@ -5,7 +5,8 @@
     </h1>
     <section>
       <AccordionItem v-for="(item, index) in accordionItems" :key="index" :accordionItem="item"
-        :isSelected="selectedAccordionIndex === index" @update:selected="showAnswer(index)" class="accordionItem" />
+        :isSelected="selectedAccordionIndex === index" @update:selected="showAnswer(index)" class="accordionItem"
+           />
     </section>
 
   </div>
