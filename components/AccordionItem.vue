@@ -68,8 +68,10 @@ hr {
 }
 
 .question:focus{
-    outline: 2px solid $pink;
-
+    h2{
+        color: $pink;
+    }
+    outline:none;
 }
 
 
